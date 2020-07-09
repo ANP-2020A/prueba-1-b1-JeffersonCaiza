@@ -15,27 +15,14 @@ use app\Products;
 |
 */
 
-Route::get('customers', function() {     return Customers::all(); });
+Route::get('customers', 'CustomerController@index');
+Route::get('customers/{id}', 'CustomerController@show');
+Route::post('customers', 'CustomerController@store');
+Route::put('customers/{id}', 'CustomerController@update');
+Route::delete('customers/{id}', 'CustomerController@delete');
 
-Route::get('customers/{id}', function($id) {     return Customers::find($id); });
-
-Route::post('customers', function(Request $request) {     return Customers::create($request->all()); });
-
-Route::put('customers/{id}', function(Request $request, $id) {     $article = Customers::findOrFail($id);     $article->update($request->all());
-
-    return $article; });
-
-Route::delete('products/{id}', function($id) {     Products::find($id)->delete();     return 204; });
-
-
-Route::get('products', function() {     return Products::all(); });
-
-Route::get('products/{id}', function($id) {     return Products::find($id); });
-
-Route::post('products', function(Request $request) {     return Products::create($request->all()); });
-
-Route::put('products/{id}', function(Request $request, $id) {     $article = Products::findOrFail($id);     $article->update($request->all());
-
-    return $article; });
-
-Route::delete('products/{id}', function($id) {     Products::find($id)->delete();     return 204; });
+Route::get('products', 'ProductsController@index');
+Route::get('products/{id}', 'ProductsController@show');
+Route::post('products', 'ProductsController@store');
+Route::put('products/{id}', 'ProductsController@update');
+Route::delete('products/{id}', 'ProductsController@delete');
